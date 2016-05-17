@@ -1,0 +1,238 @@
+﻿# NÚMERO E NOME DOS ESTUDANTES
+2151364 - Demóstenes Taquelim
+2150276 - Pedro Pereira
+
+# FUNCIONALIDADES IMPLEMENTADAS
+Premite mostrar e adicionar dados de albuns de música e sua avaliação
+Multi-idioma (português e Inglês)
+
+
+# FUNCIONALIDADES NÃO IMPLEMENTADAS OU APENAS PARCIALMENTE IMPLEMENTADAS
+
+# DESCRIÇÃO DAS FUNCIONALIDADES EXTRA
+
+Costum ListView
+Imagem de albuns
+Rating por imagem (estrelas)
+Acesso a galeria de imagens
+Adicionar imagem do album 
+Inserir avaliação por ratingBar
+
+
+# OBSERVAÇÕES
+Queriamos adicionar os dados para a Shared Preferences mas não houve tempo
+Pretendiamos permitir a edição dos albuns mas não conseguimos
+Queriamos que no dialog aparecesse a imagem selecionada numa ImageView mas não descobrimos como
+
+# CÓDIGO DA(S) CLASSE(S) JAVA
+public class MainActivity extends Activity
+
+# CÓDIGO DO(S) LAYOUT(S) XML
+
+activity_main.xml:
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:paddingBottom="16dp"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText_search"
+            android:layout_weight="2"
+            android:hint="@string/data_search" />
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinner_search"
+            android:layout_weight="1" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_search"
+            android:id="@+id/button_search"
+            android:onClick="onClick_search" />
+
+    </LinearLayout>
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView_contacts" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ADD"
+        android:id="@+id/button_add"
+        android:layout_gravity="right"
+        style="?android:attr/buttonStyleSmall"
+        android:onClick="onClick_add" />
+
+
+</LinearLayout>
+
+listview_layout.xml:
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dip">
+
+
+    <!--  ListRow Left sied Thumbnail image -->
+    <LinearLayout android:id="@+id/img_album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dip"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dip">
+
+        <ImageView
+            android:id="@+id/list_image"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            />
+
+    </LinearLayout>
+
+    <!-- Title Of Song-->
+    <TextView
+        android:id="@+id/album"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/img_album"
+        android:layout_toRightOf="@+id/img_album"
+
+        android:textColor="#040404"
+        android:typeface="sans"
+        android:textSize="15dip"
+        android:textStyle="bold"
+        android:layout_marginTop="15dp" />
+
+    <!-- Artist Name -->
+    <TextView
+        android:id="@+id/artista"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/album"
+        android:textColor="#343434"
+        android:textSize="10dip"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/img_album"
+         />
+    <!-- Ano -->
+    <TextView
+        android:id="@+id/ano"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_alignParentEnd="true"
+        android:textColor="#343434"
+        android:typeface="sans"
+        android:textSize="10dip"
+
+         />
+
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingc"
+        android:layout_alignBottom="@id/artista"
+        android:layout_alignRight="@id/artista" />
+
+
+</RelativeLayout>
+
+dialog.xml:
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_photo_album"
+        android:id="@+id/LoadPicture"
+        android:onClick="onClick_LoadPicture"
+        android:layout_gravity="center_horizontal"/>
+
+    <EditText
+        android:id="@+id/nalbum"
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="4dp"
+        android:hint="@string/n_album" />
+    <EditText
+    android:id="@+id/nartist"
+    android:inputType="text"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    android:layout_marginLeft="4dp"
+    android:layout_marginRight="4dp"
+    android:layout_marginBottom="16dp"
+    android:hint="@string/n_artist" />
+
+    <EditText
+        android:id="@+id/anoAlbum"
+        android:inputType="number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginBottom="16dp"
+        android:hint="@string/year_album" />
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/rating"
+        android:id="@+id/textView"
+        android:layout_gravity="center_horizontal"
+        android:textIsSelectable="false" />
+
+    <RatingBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ratingBar"
+        android:numStars="5"
+        android:stepSize="1"
+        android:layout_gravity="center_horizontal"
+        android:progressTint="@android:color/holo_blue_light"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:secondaryProgressTint="@android:color/holo_blue_light"/>
+
+</LinearLayout>

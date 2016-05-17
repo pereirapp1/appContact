@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">List Music App</string>
+    <string name="all">Tudo</string>
+    <string name="showingall">A mostrar todos os albuns.</string>
+    <string name="artist">Artista</string>
+    <string name="album">Album</string>
+    <string name="year">Ano</string>
+    <string name="rating">Avaliação</string>
+    <string name="no_result">Sem resultados. A mostrar todos os albuns..</string>
+    <string name="show_result">Albuns encontrados.</string>
+    <string name="enter_album">Intruduza os dados do album.</string>
+    <string name="no_album_add">Nenhum album adicionado.</string>
+    <string name="album_added">Album guardado. A mostrar todos os albuns.</string>
+    <string name="add_photo_album">Adicionar foto</string>
+    <string name="n_album">Nome do Album</string>
+    <string name="n_artist">Nome do Artista</string>
+    <string name="year_album">Ano do Album</string>
+    <string name="data_search">pesquisar</string>
+    <string name="btn_search">Pesquisar</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancelar</string>
+    <string name="canceled">Cancelado</string>
+
+    <string-array name="options">
+        <item>Tudo</item>
+        <item>Artista</item>
+        <item>Album</item>
+        <item>Ano</item>
+        <item>Avaliação</item>
+
+    </string-array>
+</resources>
