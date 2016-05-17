@@ -22,6 +22,7 @@
             import android.renderscript.Sampler;
             import android.view.LayoutInflater;
             import android.view.View;
+            import android.widget.AdapterView;
             import android.widget.ArrayAdapter;
             import android.widget.Button;
             import android.widget.EditText;
@@ -133,7 +134,7 @@
                     SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.listview_layout, from, to);
 
                     // Getting a reference to listview of main.xml layout file
-                    ListView listView = ( ListView ) findViewById(R.id.listView_contacts);
+                    final ListView listView = ( ListView ) findViewById(R.id.listView_contacts);
 
                     // Setting the adapter to the listView
                     listView.setAdapter(adapter);
@@ -145,6 +146,25 @@
                     adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
                     spinner.setAdapter(adapter2);
+
+                    listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                            HashMap<String,String> item = (HashMap<String,String>)listView.getItemAtPosition(position);
+                            aList.remove(position);
+                            // Keys used in Hashmap
+                            String[] from = { "list_image","album","artista","ano","rating" };
+                            // Ids of views in listview_layout
+                            int[] to = { R.id.list_image,R.id.album,R.id.artista,R.id.ano,R.id.ratingc};
+                            SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.listview_layout, from, to);
+                            ListView listView = (ListView) findViewById(R.id.listView_contacts);
+                            listView.setAdapter(adapter);
+
+                            Toast.makeText(MainActivity.this, "Apagaste " + item.get("album"), Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
                 }
 
                 public void onClick_search(View view) {
