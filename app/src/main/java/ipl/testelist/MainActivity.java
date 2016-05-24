@@ -515,7 +515,7 @@
                             String anoAlbum = input_anoAlbum.getText().toString();
                             String neditora = input_neditora.getText().toString();
                             String rating = String.valueOf(input_rating.getRating());
-
+/*gaita*/
                             if (nalbum.isEmpty()&& nartista.isEmpty()) {
 
                                 Toast.makeText(MainActivity.this, R.string.no_album_add, Toast.LENGTH_SHORT).show();
