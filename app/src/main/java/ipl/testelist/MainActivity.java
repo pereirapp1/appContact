@@ -6,6 +6,7 @@
             import java.util.HashMap;
             import java.util.HashSet;
             import java.util.List;
+            import java.util.Set;
 
             import android.app.Activity;
             import android.app.AlertDialog;
@@ -43,51 +44,52 @@
                 private static final int RESULT_LOAD_IMAGE = 1;
 
 
+
                 int[] list_image = new int[]{
-                        R.drawable.acdc,
+                        /*R.drawable.acdc,
                         R.drawable.bonjovi,
                         R.drawable.ironmaiden,
                         R.drawable.direstraits,
-                        R.drawable.rihanna,
+                        R.drawable.rihanna,*/
                 };
 
                 public String[] album = new String[] {
-                        "Back In Black",
+                        /*"Back In Black",
                         "Bon Jovi Greatest",
                         "The Book Of Souls",
                         "Brothers In Arms",
-                        "Take A Bow",
+                        "Take A Bow",*/
                 };
 
                 public String[] artista = new String[]{
-                        "AC/DC",
+                        /*"AC/DC",
                         "Bon Jovi",
                         "Iron Maiden",
                         "Dire Straits",
-                        "Rihanna",
+                        "Rihanna",*/
                 };
 
                 public String[] ano = new String[]{
-                        "1980",
+                       /* "1980",
                         "2010",
                         "2015",
                         "1985",
-                        "2008",
+                        "2008",*/
                 };
                 public String[] editora = new String[]{
-                        "1980",
+                        /*"1980",
                         "2010",
                         "2015",
                         "1985",
-                        "2008",
+                        "2008",*/
                 };
 
                 public String[] rating = new String[]{
-                        "5",
+                       /* "5",
                         "4",
                         "5",
                         "3",
-                        "0",
+                        "0",*/
                 };
                 private AlertDialog alertDialog;
 
@@ -98,9 +100,12 @@
                     super.onCreate(savedInstanceState);
                     setContentView(R.layout.activity_main);
 
+                    SharedPreferences sharedPreferences = getSharedPreferences("Albuns", 0);
+                    HashSet stringSet = (HashSet) sharedPreferences.getStringSet("albunsKey", new HashSet<String>());
+
                     // Each row in the list stores country name, currency and flag
                     //List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
-                    aList = new ArrayList<HashMap<String,String>>();
+                    aList = new ArrayList<HashMap<String,String>>(stringSet);
 
 
 
