@@ -4,6 +4,7 @@
             import java.security.Key;
             import java.util.ArrayList;
             import java.util.HashMap;
+            import java.util.HashSet;
             import java.util.List;
 
             import android.app.Activity;
@@ -11,6 +12,7 @@
             import android.content.Context;
             import android.content.DialogInterface;
             import android.content.Intent;
+            import android.content.SharedPreferences;
             import android.database.Cursor;
             import android.graphics.Bitmap;
             import android.graphics.BitmapFactory;
@@ -101,6 +103,7 @@
                     aList = new ArrayList<HashMap<String,String>>();
 
 
+
                     for(int i=0;i<album.length;i++){
                         HashMap<String, String> hm = new HashMap<String,String>();
                         hm.put("list_image", Integer.toString(list_image[i]) );
@@ -174,6 +177,22 @@
                         }
                     });
                 }
+                @Override
+                protected void onStop(){
+                   super.onStop();
+                    Toast.makeText(MainActivity.this, R.string.album_added, Toast.LENGTH_SHORT).show();
+
+                    //guardar os albuns para a shared preferences
+                    SharedPreferences sp = getSharedPreferences("Albuns",0);
+                    SharedPreferences.Editor editor = sp.edit();
+                    HashSet albunsSet = new HashSet(aList);
+                    editor.putStringSet("albunsKey",albunsSet);
+                    editor.commit();
+
+
+
+                }
+
 
                 public void onClick_search(View view) {
 
