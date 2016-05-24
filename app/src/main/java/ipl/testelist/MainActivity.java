@@ -72,6 +72,13 @@
                         "1985",
                         "2008",
                 };
+                public String[] editora = new String[]{
+                        "1980",
+                        "2010",
+                        "2015",
+                        "1985",
+                        "2008",
+                };
 
                 public String[] rating = new String[]{
                         "5",
@@ -99,6 +106,7 @@
                         hm.put("list_image", Integer.toString(list_image[i]) );
                         hm.put("album", getString(R.string.album)+": " +  album[i]);
                         hm.put("artista",getString(R.string.artist)+": " + artista[i]);
+                        hm.put("editora","Editora"+": "+ editora[i]);
                         hm.put("ano",getString(R.string.year)+": " + ano[i]);
 
                         if(rating[i].equals("0")){
@@ -124,10 +132,10 @@
                     }
 
                     // Keys used in Hashmap
-                    String[] from = { "list_image","album","artista","ano","rating" };
+                    String[] from = { "list_image","album","artista","ano","editora","rating" };
 
                     // Ids of views in listview_layout
-                    int[] to = { R.id.list_image,R.id.album,R.id.artista,R.id.ano,R.id.ratingc};
+                    int[] to = { R.id.list_image,R.id.album,R.id.artista,R.id.ano,R.id.editora, R.id.ratingc};
 
                     // Instantiating an adapter to store each items
                     // R.layout.listview_layout defines the layout of each item
@@ -154,9 +162,9 @@
                             HashMap<String,String> item = (HashMap<String,String>)listView.getItemAtPosition(position);
                             aList.remove(position);
                             // Keys used in Hashmap
-                            String[] from = { "list_image","album","artista","ano","rating" };
+                            String[] from = { "list_image","album","artista","ano","editora","rating" };
                             // Ids of views in listview_layout
-                            int[] to = { R.id.list_image,R.id.album,R.id.artista,R.id.ano,R.id.ratingc};
+                            int[] to = { R.id.list_image,R.id.album,R.id.artista,R.id.ano,R.id.editora,R.id.ratingc};
                             SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.listview_layout, from, to);
                             ListView listView = (ListView) findViewById(R.id.listView_contacts);
                             listView.setAdapter(adapter);
@@ -183,10 +191,10 @@
 
 
                          // Keys used in Hashmap
-                        String[] from = {"list_image", "album", "artista", "ano", "rating"};
+                        String[] from = {"list_image", "album", "artista", "ano", "editora","rating"};
 
                         // Ids of views in listview_layout
-                        int[] to = {R.id.list_image, R.id.album, R.id.artista, R.id.ano, R.id.ratingc};
+                        int[] to = {R.id.list_image, R.id.album, R.id.artista, R.id.ano,R.id.editora ,R.id.ratingc};
 
                         // Instantiating an adapter to store each items
                         // R.layout.listview_layout defines the layout of each item
@@ -219,7 +227,7 @@
                                     re.put("album", "" + aList.get(i).get("album"));
                                     re.put("artista", "" + aList.get(i).get("artista"));
                                     re.put("ano", "" + aList.get(i).get("ano"));
-
+                                    re.put("editora",""+ aList.get(i).get("editora"));
                                     if (aList.get(i).get("rating").equals("2130837590")) {
                                         re.put("rating", Integer.toString(R.drawable.star0));
                                     } else if (aList.get(i).get("rating").equals("2130837591")) {
@@ -254,6 +262,7 @@
                                     re.put("album", "" + aList.get(i).get("album"));
                                     re.put("artista", "" + aList.get(i).get("artista"));
                                     re.put("ano", "" + aList.get(i).get("ano"));
+                                    re.put("editora",""+ aList.get(i).get("editora"));
 
                                     if (aList.get(i).get("rating").equals("2130837590")) {
                                         re.put("rating", Integer.toString(R.drawable.star0));
@@ -286,6 +295,7 @@
                                     re.put("album", "" + aList.get(i).get("album"));
                                     re.put("artista", "" + aList.get(i).get("artista"));
                                     re.put("ano", "" + aList.get(i).get("ano"));
+                                    re.put("editora",""+ aList.get(i).get("editora"));
 
                                     if (aList.get(i).get("rating").equals("2130837590")) {
                                         re.put("rating", Integer.toString(R.drawable.star0));
@@ -319,6 +329,7 @@
                                     re.put("album", "" + aList.get(i).get("album"));
                                     re.put("artista", "" + aList.get(i).get("artista"));
                                     re.put("ano", "" + aList.get(i).get("ano"));
+                                    re.put("editora", "" + aList.get(i).get("editora"));
 
                                     if (aList.get(i).get("rating").equals("2130837590")) {
                                         re.put("rating", Integer.toString(R.drawable.star0));
@@ -338,6 +349,42 @@
                                 }
 
                             }
+                        }else if (itemSeleccionado.equals(getString(R.string.editora))) {
+                                for (int i = 0; i < aList.size(); i++) {
+                                    String valor = aList.get(i).get("editora").toLowerCase();
+                                    boolean contem = valor.contains(termo);
+
+                                    //se for verdadeiro
+
+                                    if (contem) {
+
+                                        HashMap<String, String> re = new HashMap<String, String>();
+                                        re.put("list_image", aList.get(i).get("list_image"));
+                                        re.put("album", "" + aList.get(i).get("album"));
+                                        re.put("artista", "" + aList.get(i).get("artista"));
+                                        re.put("ano", "" + aList.get(i).get("ano"));
+                                        re.put("editora",""+ aList.get(i).get("editora"));
+
+                                        if (aList.get(i).get("rating").equals("2130837590")) {
+                                            re.put("rating", Integer.toString(R.drawable.star0));
+                                        } else if (aList.get(i).get("rating").equals("2130837591")) {
+                                            re.put("rating", Integer.toString(R.drawable.star1));
+                                        } else if (aList.get(i).get("rating").equals("2130837592")) {
+                                            re.put("rating", Integer.toString(R.drawable.star2));
+                                        } else if (aList.get(i).get("rating").equals("2130837593")) {
+                                            re.put("rating", Integer.toString(R.drawable.star3));
+                                        } else if (aList.get(i).get("rating").equals("2130837594")) {
+                                            re.put("rating", Integer.toString(R.drawable.star4));
+                                        } else if (aList.get(i).get("rating").equals("2130837595")) {
+                                            re.put("rating", Integer.toString(R.drawable.star5));
+                                        }
+
+                                        resultados.add(re);
+                                    }
+
+                                }
+
+
                         }else if (itemSeleccionado.equals(getString(R.string.rating))) {
 
                             for (int i = 0; i < aList.size(); i++) {
@@ -369,6 +416,7 @@
                                     re.put("album", "" + aList.get(i).get("album"));
                                     re.put("artista", "" + aList.get(i).get("artista"));
                                     re.put("ano", "" + aList.get(i).get("ano"));
+                                    re.put("editora",""+ aList.get(i).get("editora"));
 
                                     if (aList.get(i).get("rating").equals("2130837590")) {
                                         re.put("rating", Integer.toString(R.drawable.star0));
@@ -393,10 +441,10 @@
 
 
                             // Keys used in Hashmap
-                            String[] from = {"list_image", "album", "artista", "ano", "rating"};
+                            String[] from = {"list_image", "album", "artista", "ano","editora", "rating"};
 
                             // Ids of views in listview_layout
-                            int[] to = {R.id.list_image, R.id.album, R.id.artista, R.id.ano, R.id.ratingc};
+                            int[] to = {R.id.list_image, R.id.album, R.id.artista, R.id.ano,R.id.editora ,R.id.ratingc};
 
                             // Instantiating an adapter to store each items
                             // R.layout.listview_layout defines the layout of each item
@@ -410,14 +458,14 @@
                             lv.setAdapter(adapter);
 
                             Toast.makeText(MainActivity.this, R.string.no_result, Toast.LENGTH_SHORT).show();
-                        }else{
+                        }else {
 
 
                             // Keys used in Hashmap
-                            String[] from = {"list_image", "album", "artista", "ano", "rating"};
+                            String[] from = {"list_image", "album", "artista", "ano", "editora", "rating"};
 
                             // Ids of views in listview_layout
-                            int[] to = {R.id.list_image, R.id.album, R.id.artista, R.id.ano, R.id.ratingc};
+                            int[] to = {R.id.list_image, R.id.album, R.id.artista, R.id.ano, R.id.editora, R.id.ratingc};
 
                             // Instantiating an adapter to store each items
                             // R.layout.listview_layout defines the layout of each item
@@ -431,9 +479,10 @@
                             lv.setAdapter(adapter);
 
                             Toast.makeText(MainActivity.this, R.string.show_result, Toast.LENGTH_SHORT).show();
-
-
                         }
+
+
+
                     }
 
                 }
@@ -456,6 +505,7 @@
                             EditText input_nalbum = (EditText) al.findViewById(R.id.nalbum);
                             EditText input_nartista = (EditText) al.findViewById(R.id.nartist);
                             EditText input_anoAlbum = (EditText) al.findViewById(R.id.anoAlbum);
+                            EditText input_neditora = (EditText) al.findViewById(R.id.neditora);
                             RatingBar input_rating = (RatingBar) al.findViewById(R.id.ratingBar);
 
                             //im.setImageResource(R.drawable.nophoto);
@@ -463,6 +513,7 @@
                             String nalbum = input_nalbum.getText().toString();
                             String nartista = input_nartista.getText().toString();
                             String anoAlbum = input_anoAlbum.getText().toString();
+                            String neditora = input_neditora.getText().toString();
                             String rating = String.valueOf(input_rating.getRating());
 
                             if (nalbum.isEmpty()&& nartista.isEmpty()) {
@@ -481,6 +532,7 @@
                                 hm.put("album", "Album : " + nalbum);
                                 hm.put("artista","Artista : " + nartista);
                                 hm.put("ano","Ano : " + anoAlbum);
+                                hm.put("editora","Editora : " + neditora);
 
                                 if(rating.equals("0.0")){
                                     hm.put("rating",Integer.toString(R.drawable.star0));
@@ -504,10 +556,10 @@
                                 aList.add(hm);
 
                              // Keys used in Hashmap
-                            String[] from = { "list_image","album","artista","ano","rating" };
+                            String[] from = { "list_image","album","artista","ano","editora","rating" };
 
                             // Ids of views in listview_layout
-                            int[] to = { R.id.list_image,R.id.album,R.id.artista,R.id.ano,R.id.ratingc};
+                            int[] to = { R.id.list_image,R.id.album,R.id.artista,R.id.ano,R.id.editora,R.id.ratingc};
 
                             // Instantiating an adapter to store each items
                             // R.layout.listview_layout defines the layout of each item
@@ -584,6 +636,7 @@
                         hm.put("album", getString(R.string.album)+": " +  album[i]);
                         hm.put("artista",getString(R.string.artist)+": " + artista[i]);
                         hm.put("ano",getString(R.string.year)+": " + ano[i]);
+                        hm.put("editora",getString(R.string.neditora)+": "+editora[i]);
 
                         if(rating[i].equals("0")){
                             hm.put("rating",Integer.toString(R.drawable.star0));
@@ -608,10 +661,10 @@
                     }
 
                     // Keys used in Hashmap
-                    String[] from = { "list_image","album","artista","ano","rating" };
+                    String[] from = { "list_image","album","artista","ano","editora","rating" };
 
                     // Ids of views in listview_layout
-                    int[] to = { R.id.list_image,R.id.album,R.id.artista,R.id.ano,R.id.ratingc};
+                    int[] to = { R.id.list_image,R.id.album,R.id.artista,R.id.ano,R.id.editora,R.id.ratingc};
 
                     // Instantiating an adapter to store each items
                     // R.layout.listview_layout defines the layout of each item
