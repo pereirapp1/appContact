@@ -46,50 +46,50 @@
 
 
                 int[] list_image = new int[]{
-                        /*R.drawable.acdc,
+                        R.drawable.acdc,
                         R.drawable.bonjovi,
                         R.drawable.ironmaiden,
                         R.drawable.direstraits,
-                        R.drawable.rihanna,*/
+                        R.drawable.rihanna,
                 };
 
                 public String[] album = new String[] {
-                        /*"Back In Black",
+                        "Back In Black",
                         "Bon Jovi Greatest",
                         "The Book Of Souls",
                         "Brothers In Arms",
-                        "Take A Bow",*/
+                        "Take A Bow",
                 };
 
                 public String[] artista = new String[]{
-                        /*"AC/DC",
+                        "AC/DC",
                         "Bon Jovi",
                         "Iron Maiden",
                         "Dire Straits",
-                        "Rihanna",*/
+                        "Rihanna",
                 };
 
                 public String[] ano = new String[]{
-                       /* "1980",
+                        "1980",
                         "2010",
                         "2015",
                         "1985",
-                        "2008",*/
+                        "2008",
                 };
                 public String[] editora = new String[]{
-                        /*"1980",
+                        "1980",
                         "2010",
                         "2015",
                         "1985",
-                        "2008",*/
+                        "2008",
                 };
 
                 public String[] rating = new String[]{
-                       /* "5",
+                        "5",
                         "4",
                         "5",
                         "3",
-                        "0",*/
+                        "0",
                 };
                 private AlertDialog alertDialog;
 
@@ -163,20 +163,29 @@
 
                     spinner.setAdapter(adapter2);
 
+
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                             HashMap<String,String> item = (HashMap<String,String>)listView.getItemAtPosition(position);
-                            aList.remove(position);
+                           // aList.remove(position);
                             // Keys used in Hashmap
-                            String[] from = { "list_image","album","artista","ano","editora","rating" };
+                           // String[] from = { "list_image","album","artista","ano","editora","rating" };
                             // Ids of views in listview_layout
-                            int[] to = { R.id.list_image,R.id.album,R.id.artista,R.id.ano,R.id.editora,R.id.ratingc};
-                            SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.listview_layout, from, to);
-                            ListView listView = (ListView) findViewById(R.id.listView_contacts);
-                            listView.setAdapter(adapter);
+                            //int[] to = { R.id.list_image,R.id.album,R.id.artista,R.id.ano,R.id.editora,R.id.ratingc};
 
+                            //SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.listview_layout, from, to);
+                            //ListView listView = (ListView) findViewById(R.id.listView_contacts);
+                           // listView.setAdapter(adapter);
+                            String artista = item.get("artista");
+                            String album = item.get("album");
+                            String query = artista + " " + album;
+                            Intent intent = new Intent(Intent.ACTION_SEARCH);
+                            intent.setPackage("com.google.android.youtube");
+                            intent.putExtra("query", query);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
                             Toast.makeText(MainActivity.this, "Apagaste " + item.get("album"), Toast.LENGTH_SHORT).show();
 
                         }
