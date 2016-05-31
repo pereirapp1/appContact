@@ -7,7 +7,7 @@
             import java.util.HashSet;
             import java.util.List;
             import java.util.Set;
-
+            import android.view.ViewGroup.LayoutParams;
             import android.app.Activity;
             import android.app.AlertDialog;
             import android.content.Context;
@@ -23,8 +23,10 @@
             import android.os.Bundle;
             import android.provider.MediaStore;
             import android.renderscript.Sampler;
+            import android.view.Gravity;
             import android.view.LayoutInflater;
             import android.view.View;
+            import android.view.ViewGroup;
             import android.widget.AdapterView;
             import android.widget.ArrayAdapter;
             import android.widget.Button;
@@ -32,6 +34,7 @@
             import android.widget.ImageView;
             import android.widget.LinearLayout;
             import android.widget.ListView;
+            import android.widget.PopupWindow;
             import android.widget.RatingBar;
             import android.widget.SimpleAdapter;
             import android.widget.Spinner;
@@ -167,21 +170,45 @@
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
+
                             HashMap<String,String> item = (HashMap<String,String>)listView.getItemAtPosition(position);
-                            aList.remove(position);
+
+                            String artista = item.get("artista");
+                            String[] a = artista.split(": ");
+                            String art = a[1];
+                            String album = item.get("album");
+                            String[] al = album.split(": ");
+                            String alb = al[1];
+
+                            String query = art + " " + alb + "full album";
+                            Intent intent = new Intent(Intent.ACTION_SEARCH);
+                            //intent.setAction("com.google.android.youtube",cl)
+                            intent.setPackage("com.google.android.youtube");
+                            intent.putExtra("query", query);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+
+
+                            /*aList.remove(position);
                             // Keys used in Hashmap
                             String[] from = { "list_image","album","artista","ano","editora","rating" };
                             // Ids of views in listview_layout
                             int[] to = { R.id.list_image,R.id.album,R.id.artista,R.id.ano,R.id.editora,R.id.ratingc};
                             SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.listview_layout, from, to);
                             ListView listView = (ListView) findViewById(R.id.listView_contacts);
-                            listView.setAdapter(adapter);
+                            listView.setAdapter(adapter);*/
 
-                            Toast.makeText(MainActivity.this, "Apagaste " + item.get("album"), Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(MainActivity.this, "Apagaste " + item.get("album"), Toast.LENGTH_SHORT).show();
+
+
+
 
                         }
                     });
                 }
+
+
                 @Override
                 protected void onStop(){
                    super.onStop();
