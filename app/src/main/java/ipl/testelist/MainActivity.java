@@ -7,6 +7,9 @@
             import java.util.HashSet;
             import java.util.List;
             import java.util.Set;
+
+            import android.app.Dialog;
+            import android.app.DialogFragment;
             import android.view.ViewGroup.LayoutParams;
             import android.app.Activity;
             import android.app.AlertDialog;
@@ -171,8 +174,7 @@
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-
-                            HashMap<String,String> item = (HashMap<String,String>)listView.getItemAtPosition(position);
+                  HashMap<String,String> item = (HashMap<String,String>)listView.getItemAtPosition(position);
 
                             String artista = item.get("artista");
                             String[] a = artista.split(": ");
@@ -200,6 +202,9 @@
                             listView.setAdapter(adapter);*/
 
                             //Toast.makeText(MainActivity.this, "Apagaste " + item.get("album"), Toast.LENGTH_SHORT).show();
+
+
+
 
 
 
