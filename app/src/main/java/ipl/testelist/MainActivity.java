@@ -211,6 +211,24 @@
 
                         }
                     });
+
+
+                    listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+                        @Override
+                        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                            HashMap<String,String> item = (HashMap<String,String>)listView.getItemAtPosition(position);
+                            aList.remove(position);
+                            //Keys used in Hashmap
+                            String[] from = { "list_image","album","artista","ano","editora","rating" };
+                            //Ids of views in listview_layout
+                            int[] to = { R.id.list_image,R.id.album,R.id.artista,R.id.ano,R.id.editora,R.id.ratingc};
+                            SimpleAdapter adapter = new SimpleAdapter(getBaseContext(), aList, R.layout.listview_layout, from, to);
+                            ListView listView = (ListView) findViewById(R.id.listView_contacts);
+                            listView.setAdapter(adapter);
+                            Toast.makeText(MainActivity.this, "Apagaste " + item.get("album"), Toast.LENGTH_SHORT).show();
+                            return true;
+                        }
+                    });
                 }
 
 

@@ -22,7 +22,7 @@
     <string name="canceled">Canceled</string>
     <string name="editora" />
     <string name="neditora" />
-
+    <color name="bgcolor">#30ffff</color>
 
     <string-array name="options">
         <item>All</item>
